@@ -61,7 +61,6 @@ class SuccessUrlMixin:
 
 
 class LockUserTableMixin:
-    @transaction.atomic()
     def dispatch(self, request, *args, **kwargs):
         # Lock entire user table to avoid race conditions
         next(get_user_model()._base_manager.select_for_update().iterator())
